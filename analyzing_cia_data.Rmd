@@ -1,0 +1,64 @@
+---
+title: "Analyzing CIA Economic Data"
+author: "David Bick"
+date: "8/15/2019"
+output: html_document
+---
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(gridExtra)
+```
+
+
+```{r}
+data <- read.csv("economic_data.csv")
+top_five <- c("United States", "China", "Japan", "Germany", "United Kingdom")
+```
+
+```{r}
+agriculture <- data %>% filter(Country %in% top_five) %>% 
+  ggplot(.) + 
+  geom_bar(aes(x = Country, y = Agriculture, 
+               fill = Country), 
+           stat = "identity") + 
+  labs(y = "% of GDP", 
+       title = "Agriculture") + 
+  theme(axis.text.x = element_blank(), 
+        axis.title.x = element_blank(), 
+        axis.ticks.x = element_blank())
+
+industry <- data %>% filter(Country %in% top_five) %>% 
+  ggplot(.) + 
+  geom_bar(aes(x = Country, y = Industry, 
+               fill = Country), 
+           stat = 'identity') + 
+  labs(y = "% of GDP", 
+       title = "Industry") + 
+  theme(axis.text.x = element_blank(), 
+        axis.title.x = element_blank(), 
+        axis.ticks.x = element_blank())
+
+services <- data %>% filter(Country %in% top_five) %>% 
+  ggplot(.) + 
+  geom_bar(aes(x = Country, y = Services, 
+               fill = Country), 
+           stat = 'identity') + 
+  labs(y = "% of GDP", 
+       title = "Services") + 
+  theme(axis.text.x = element_blank(), 
+        axis.title.x = element_blank(), 
+        axis.ticks.x = element_blank())
+
+grid.arrange(agriculture, industry, services, ncol = 2, top = "GDP Breakdown by Sector For Top 5 World Economies")
+
+```
+
+
+```{r}
+
+
+
+```
+
+

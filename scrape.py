@@ -31,4 +31,4 @@ for row in rows:
 
 data = pd.DataFrame(list(zip(countries, agriculture, industry, services)), 
                     columns = ['Country', 'Agriculture', "Industry", "Services"]) 
-
+data.to_csv("economic_data.csv", index = False)
