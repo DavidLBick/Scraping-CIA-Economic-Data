@@ -55,10 +55,5 @@ grid.arrange(agriculture, industry, services, ncol = 2, top = "GDP Breakdown by 
 ```
 
 
-```{r}
-
-
-
-```
 
 
